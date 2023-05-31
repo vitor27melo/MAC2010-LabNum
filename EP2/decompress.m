@@ -36,11 +36,11 @@ function img = bilinear(decompImg, n, h, k)
        1,h,0,0;
        1,h,h,h*h];
   img = decompImg;
-  # Vermelho para cada Q_ij
+  # Vermelho para Q_ij
   img = interpolateColorBilinear(img, n, M, k, "red");
-  # Verde para cada Q_ij
+  # Verde para Q_ij
   img = interpolateColorBilinear(img, n, M, k, "green");
-  # Azul para cada Q_ij
+  # Azul para Q_ij
   img = interpolateColorBilinear(img, n, M, k, "blue");
 endfunction
 
@@ -84,42 +84,32 @@ function img = bicubic(decompImg, n, h, k)
 
       # Sub-matriz 4x4 superior esquerda
       F(1,1,:) = img(i,j,:);
-      F(1,2,:) = img(i,j+k+1,:);
       F(2,1,:) = img(i+k+1,j,:);
+      F(1,2,:) = img(i,j+k+1,:);
       F(2,2,:) = img(i+k+1,j+k+1,:);
 
       # Sub-matriz 4x4 superior direita
       F(1,3,:) = partialDeriv(img, i, j, h, k, n, "y");
-      F(1,4,:) = partialDeriv(img, i, j+k+1, h, k, n, "y");
       F(2,3,:) = partialDeriv(img, i+k+1, j, h, k, n, "y");
+      F(1,4,:) = partialDeriv(img, i, j+k+1, h, k, n, "y");
       F(2,4,:) = partialDeriv(img, i+k+1, j+k+1, h, k, n, "y");
 
       # Sub-matriz 4x4 inferior esquerda
       F(3,1,:) = partialDeriv(img, i, j, h, k, n, "x");
-      F(3,2,:) = partialDeriv(img, i, j+k+1, h, k, n, "x");
       F(4,1,:) = partialDeriv(img, i+k+1, j, h, k, n, "x");
+      F(3,2,:) = partialDeriv(img, i, j+k+1, h, k, n, "x");
       F(4,2,:) = partialDeriv(img, i+k+1, j+k+1, h, k, n, "x");
 
       # Sub-matriz 4x4 inferior direita
       F(3,3,:) = mixedDeriv(img, i, j, h, k, n);
-      F(3,4,:) = mixedDeriv(img, i, j+k+1, h, k, n);
       F(4,3,:) = mixedDeriv(img, i+k+1, j, h, k, n);
+      F(3,4,:) = mixedDeriv(img, i, j+k+1, h, k, n);
       F(4,4,:) = mixedDeriv(img, i+k+1, j+k+1, h, k, n);
-
-
-      #img = interpolateColorBicubic(img, n, B, k, F, i, j, "red");
-
-      #img = interpolateColorBicubic(img, n, B, k, F, i, j, "green");
-
-      #img = interpolateColorBicubic(img, n, B, k, F, i, j, "blue");
-      A1 = B * F(:,:,1) * B';
-      A2 = B * F(:,:,2) * B';
-      A3 = B * F(:,:,3) * B';
 
       for x = i : i+k+1;
         for y = j : j+k+1;
           if(img(x,y,1) == 256);
-            # Vermelho para
+            # Vermelho para Q_xy
             img(x,y,1) = interpolateColorBicubic(img, B, F, x, y, i, j, "red");
             # Verde para Q_xy
             img(x,y,2) = interpolateColorBicubic(img, B, F, x, y, i, j, "green");
