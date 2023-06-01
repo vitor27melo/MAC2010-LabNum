@@ -82,25 +82,25 @@ function img = bicubic(decompImg, n, h, k)
     for j = 1:k+1:n-1;
       F = zeros(4,4,3);
 
-      # Sub-matriz 4x4 superior esquerda
+      # Sub-matriz 2x2 superior esquerda
       F(1,1,:) = img(i,j,:);
       F(2,1,:) = img(i+k+1,j,:);
       F(1,2,:) = img(i,j+k+1,:);
       F(2,2,:) = img(i+k+1,j+k+1,:);
 
-      # Sub-matriz 4x4 superior direita
+      # Sub-matriz 2x2 superior direita
       F(1,3,:) = partialDeriv(img, i, j, h, k, n, "y");
       F(2,3,:) = partialDeriv(img, i+k+1, j, h, k, n, "y");
       F(1,4,:) = partialDeriv(img, i, j+k+1, h, k, n, "y");
       F(2,4,:) = partialDeriv(img, i+k+1, j+k+1, h, k, n, "y");
 
-      # Sub-matriz 4x4 inferior esquerda
+      # Sub-matriz 2x2 inferior esquerda
       F(3,1,:) = partialDeriv(img, i, j, h, k, n, "x");
       F(4,1,:) = partialDeriv(img, i+k+1, j, h, k, n, "x");
       F(3,2,:) = partialDeriv(img, i, j+k+1, h, k, n, "x");
       F(4,2,:) = partialDeriv(img, i+k+1, j+k+1, h, k, n, "x");
 
-      # Sub-matriz 4x4 inferior direita
+      # Sub-matriz 2x2 inferior direita
       F(3,3,:) = mixedDeriv(img, i, j, h, k, n);
       F(4,3,:) = mixedDeriv(img, i+k+1, j, h, k, n);
       F(3,4,:) = mixedDeriv(img, i, j+k+1, h, k, n);

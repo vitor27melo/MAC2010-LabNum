@@ -23,7 +23,7 @@ function colorErr = calculateColorErr(origImg, decompImg, color)
   p = size(decompImg)(1);
   for i = 1:p;
     for j = 1:p;
-      origR(i, j) = double(origImg(i+1, j+1, color));
+      origR(i, j) = double(origImg(i, j, color));
       decompR(i, j) = double(decompImg(i, j, color));
     endfor
   endfor
