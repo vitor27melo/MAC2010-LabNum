@@ -135,7 +135,7 @@ endfunction
 function derivative = partialDeriv(img, x, y, h, k, n, axis)
   # Nas "bordas" da imagem em relação ao eixo "axis",
   # calcula-se a derivada apenas "para frente" ou apenas "para trás".
-  #Caso contrário, calcula-se a diferença centralizada
+  # Caso contrário, calcula-se a diferença centralizada
   if     (axis == "x" && x == 1)
     x_plus = k+1; y_plus = 0; x_minus = 0; y_minus = 0; dist = h;
   elseif (axis == "x" && x == n)
