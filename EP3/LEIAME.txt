@@ -1,0 +1,9 @@
+Para compilar e executar o método trapezóide composto:
+
+	gcc -o trapezoide_composto trapezoide_composto.c
+	./trapezoide_composto
+
+Para compilar e executar o método Simpson composto:
+
+	gcc -o simpson_composto simpson_composto.c
+	./simpson_composto
