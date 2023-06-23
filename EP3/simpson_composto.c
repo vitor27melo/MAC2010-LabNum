@@ -1,4 +1,8 @@
+// EP3 - MAC0210 - simpson_composto.c
+// Autor: Vítor Carvalho de Melo (nUSP 10723753)
+
 #include <stdio.h>
+#include <stdlib.h>
 
 float data_matrix[][2] = {
     {0.0, 0.0},
