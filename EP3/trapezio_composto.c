@@ -3,7 +3,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
 #include <math.h>
 
 long double lagrange_pol(double x) {
@@ -17,7 +16,7 @@ long double lagrange_pol(double x) {
     return y;
 }
 
-long double calcula_integral(double h){
+long double  calcula_integral(double h){
     int n_pontos = floor(30/h) + 1;
     long double result = 0;
 
@@ -27,22 +26,19 @@ long double calcula_integral(double h){
     }
 
     result = lagrange_pol(pontos[0]);
-    for (int i=1; i<=2; i++) {
-        result += 2*lagrange_pol(pontos[2*i]);
-    }
-    for (int i=1; i<=3; i++) {
-        result += 4*lagrange_pol(pontos[(2*i)-1]);
+    for (int i=1; i<n_pontos-1; i++) {
+        result += 2*lagrange_pol(pontos[i]);
     }
     result += lagrange_pol(30);
-    return (h*result)/3;
+    return (h*result)/2;
 }
 
 int main(int argc, char **argv) {
-   if (argc != 2 || !atof(argv[1])) { 
-        printf("Uso do script: ./simpson_composto {h}\n\n");
+    if (argc != 2 || !atof(argv[1])) { 
+        printf("Uso do script: ./trapezio_composto {h}\n\n");
         exit(1);
     }
 
     printf("%LG", calcula_integral(atof(argv[1])));
-   return 0;
+    return 0;
 }

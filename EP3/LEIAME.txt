@@ -1,9 +1,21 @@
-Para compilar e executar o método trapezóide composto:
+Para executar o método trapézio composto:
 
-	gcc -o trapezoide_composto trapezoide_composto.c
-	./trapezoide_composto
+	./trapezoide_composto {h}
 
-Para compilar e executar o método Simpson composto:
+Para e executar o método Simpson composto:
 
-	gcc -o simpson_composto simpson_composto.c
-	./simpson_composto
+	./simpson_composto {h}
+
+, em que h é o tamanho do intervalo entre dois x_i
+
+
+
+
+
+Para executar o Monte Carlo unidimensional:
+
+	./monte_carlo_unidimensional {número da função} {número de iterações}
+
+, em que as opções para "número da função" são: 
+
+	1: sin(x)   2: x^3   3: e^-x

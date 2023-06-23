@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
-#include <float.h>
 
 typedef double (*funcao)(double);
 
@@ -36,12 +35,10 @@ int main(int argc, char **argv) {
     srand(time(NULL));
 
     if (argc != 3 || !atoi(argv[1]) || !atoi(argv[2])) { 
-        printf("Uso do script: ./monte_carlo_unidimensional {function number} {number of iterations}\n\n");
-        printf("Function numbers: \n   1: sin(x)\n   2: x^3\n   3: e^-x\n");
+        printf("Uso do script: ./monte_carlo_unidimensional {número da função} {número de iterações}\n\n");
+        printf("Número da função: \n   1: sin(x)\n   2: x^3\n   3: e^-x\n");
         exit(1);
     }
-
-    // iter = atoi(argv[2]);
 
     switch(atoi(argv[1])) {
         case 1:
