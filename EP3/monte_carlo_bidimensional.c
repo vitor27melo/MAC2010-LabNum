@@ -22,7 +22,7 @@ double monte_carlo(int iteracoes) {
         nInscrito += ponto_inscrito(x, y);
     }
 
-    return (nInscrito/iteracoes)*4;
+    return 4*(nInscrito/iteracoes);
 }
 
 int main(int argc, char **argv) {
@@ -33,6 +33,6 @@ int main(int argc, char **argv) {
         exit(1);
     }
 
-    printf("%lf", monte_carlo(atoi(argv[1])));
+    printf("%lf\n", monte_carlo(atoi(argv[1])));
     
 }

@@ -48,7 +48,7 @@ int main(int argc, char **argv) {
             printf("%lf\n", monte_carlo(atoi(argv[2]), 3, 7, &f2));
             break;
         case 3:
-            printf("%lf\n", monte_carlo(atoi(argv[2]), 0, 10000000, &f3));
+            printf("%lf\n", monte_carlo(atoi(argv[2]), 0, 1000000000, &f3));
             break;
     }
 }

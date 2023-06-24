@@ -3,7 +3,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
 #include <math.h>
 
 long double lagrange_pol(double x) {
@@ -25,21 +24,24 @@ long double calcula_integral(double h){
     for (int i=0; i<n_pontos; i++) {
         pontos[i] = i*h;
     }
-
+    
     result = lagrange_pol(pontos[0]);
-    for (int i=1; i<=2; i++) {
-        result += 2*lagrange_pol(pontos[2*i]);
-    }
-    for (int i=1; i<=3; i++) {
-        result += 4*lagrange_pol(pontos[(2*i)-1]);
+    if (n_pontos > 2) {
+        for (int i=1; i<=floor(((n_pontos-1)/2)) -1; i++) {
+            result += 2*lagrange_pol(pontos[2*i]);
+        }
+        for (int i=1; i<=floor((n_pontos-1)/2); i++) {
+            result += 4*lagrange_pol(pontos[(2*i)-1]);
+        }
     }
     result += lagrange_pol(30);
+    printf("n pontos %d\n", n_pontos);
     return (h*result)/3;
 }
 
 int main(int argc, char **argv) {
-   if (argc != 2 || !atof(argv[1])) { 
-        printf("Uso do script: ./simpson_composto {h}\n\n");
+   if (argc != 2 || !atof(argv[1]) || atof(argv[1]) > 30 || atof(argv[1]) < 0) { 
+        printf("Uso do script: ./simpson_composto {0 < h <= 30}\n\n");
         exit(1);
     }
 

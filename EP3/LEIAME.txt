@@ -1,21 +1,21 @@
 Para executar o método trapézio composto:
-
 	./trapezoide_composto {h}
+, em que h é o tamanho do intervalo entre dois x_i consecutivos
+
+
 
 Para e executar o método Simpson composto:
-
 	./simpson_composto {h}
-
-, em que h é o tamanho do intervalo entre dois x_i
-
-
+, em que h é o tamanho do intervalo entre dois x_i consecutivos
 
 
 
 Para executar o Monte Carlo unidimensional:
-
 	./monte_carlo_unidimensional {número da função} {número de iterações}
-
 , em que as opções para "número da função" são: 
-
 	1: sin(x)   2: x^3   3: e^-x
+
+
+
+Para executar o Monte Carlo bidimensional
+	./monte_carlo_bidimensional {número de iterações}

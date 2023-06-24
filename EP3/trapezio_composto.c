@@ -1,4 +1,4 @@
-// EP3 - MAC0210 - simpson_composto.c
+// EP3 - MAC0210 - trapezio_composto.c
 // Autor: Vítor Carvalho de Melo (nUSP 10723753)
 
 #include <stdio.h>
@@ -26,16 +26,18 @@ long double  calcula_integral(double h){
     }
 
     result = lagrange_pol(pontos[0]);
-    for (int i=1; i<n_pontos-1; i++) {
-        result += 2*lagrange_pol(pontos[i]);
+    if (n_pontos > 2) {
+        for (int i=1; i<n_pontos-1; i++) {
+            result += 2*lagrange_pol(pontos[i]);
+        }
     }
     result += lagrange_pol(30);
     return (h*result)/2;
 }
 
 int main(int argc, char **argv) {
-    if (argc != 2 || !atof(argv[1])) { 
-        printf("Uso do script: ./trapezio_composto {h}\n\n");
+    if (argc != 2 || !atof(argv[1]) || atof(argv[1]) > 30 || atof(argv[1]) < 0) { 
+        printf("Uso do script: ./trapezio_composto {0 < h <= 30}\n\n");
         exit(1);
     }
 
