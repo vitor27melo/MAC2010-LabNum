@@ -7,6 +7,7 @@
 #include <time.h>
 #include <stdbool.h>
 
+// Verifica se o ponto (x,y) está inscrito no círculo
 bool ponto_inscrito(double x, double y) {
     double dist = sqrt(pow(x, 2) + pow(y, 2));
     return dist <= 1;
@@ -16,9 +17,9 @@ double monte_carlo(int iteracoes) {
     double x, y, nInscrito = 0;
 
     for (int i=0; i<iteracoes; i++) {
-
-        x = -1 + (double)rand() / RAND_MAX * 2;
-        y = -1 + (double)rand() / RAND_MAX * 2;
+        // a + rand/(b-a)
+        x = -1 + (double)rand() / RAND_MAX * (1 - (-1));
+        y = -1 + (double)rand() / RAND_MAX * (1 - (-1));
         nInscrito += ponto_inscrito(x, y);
     }
 

@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <math.h>
 
+// Calcula, o valor de p(x) pelo polinômio descrito no relatório
 long double lagrange_pol(double x) {
     long double y = -
         ((long double) 22963    / (long double) 56250000000 )*pow(x, 6) -
@@ -17,10 +18,12 @@ long double lagrange_pol(double x) {
 }
 
 long double  calcula_integral(double h){
+    // Calcula, p/ uma distância h, o número de pontos que deverão ser calculados
     int n_pontos = floor(30/h) + 1;
     long double result = 0;
 
     float pontos[n_pontos];
+    // Calcula os n_pontos do intervalo [0, 30]
     for (int i=0; i<n_pontos; i++) {
         pontos[i] = i*h;
     }
